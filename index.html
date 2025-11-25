@@ -2,27 +2,23 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flip Test</title>
 
-<!-- jQuery -->
+<!-- jQuery（Turn.jsが依存している） -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Turn.js（0.11 固定）-->
+<!-- Turn.js（CDNから読み込み ※バージョン 0.11 に修正） -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/0.11/turn.min.js"></script>
 
 <style>
   body {
     background: #f0f0f0;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 40px;
   }
 
-  /* PC用の基本サイズ（前にめくれてた時とほぼ同じ） */
   #flipbook {
     width: 700px;
     height: 450px;
@@ -31,15 +27,7 @@
   #flipbook img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-  }
-
-  /* スマホのときだけ、ちょっと大きめにする */
-  @media (max-width: 768px) {
-    #flipbook {
-      width: 90vw;   /* 画面幅の90% */
-      height: 135vw; /* 縦長にして見やすくする（適度に大きめ） */
-    }
+    object-fit: cover;
   }
 </style>
 </head>
@@ -50,17 +38,14 @@
   <div><img src="page1.png"></div>
   <div><img src="page2.png"></div>
   <div><img src="page3.png"></div>
-  <!-- 裏表紙つけるなら↓を足して back.png を用意 -->
-  <!-- <div><img src="back.png"></div> -->
 </div>
 
 <script>
   $(document).ready(function() {
     $("#flipbook").turn({
-      display: "single",
-      autoCenter: true,
-      width: $("#flipbook").width(),
-      height: $("#flipbook").height()
+      width: 700,
+      height: 450,
+      autoCenter: true
     });
   });
 </script>
