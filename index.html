@@ -8,7 +8,7 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Turn.js -->
+<!-- Turn.js（0.11固定） -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/0.11/turn.min.js"></script>
 
 <style>
@@ -22,11 +22,9 @@
     height: 100vh;
   }
 
-  /* スマホでもPCでも横幅いっぱいで表示 */
+  /* ここでは最低限だけ指定しておく。サイズはJS側で制御する */
   #flipbook {
-    width: 95vw;          /* ← 横幅いっぱい */
-    max-width: 900px;     /* PC時の最大値 */
-    aspect-ratio: 3 / 4;  /* ← 本の縦横比（ここが大事！） */
+    background: #f0f0f0;
   }
 
   #flipbook img {
@@ -40,27 +38,3 @@
 <body>
 
 <div id="flipbook">
-  <div><img src="page1.png"></div>
-  <div><img src="page2.png"></div>
-  <div><img src="page3.png"></div>
-</div>
-
-<script>
-  $(document).ready(function() {
-    const book = $("#flipbook");
-
-    book.turn({
-      display: "single",
-      autoCenter: true,
-      width: book.width(),
-      height: book.height()
-    });
-
-    $(window).on("resize", function(){
-      book.turn("size", book.width(), book.height());
-    });
-  });
-</script>
-
-</body>
-</html>
