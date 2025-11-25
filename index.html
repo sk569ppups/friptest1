@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Flip Test</title>
+
+<!-- jQuery（Turn.jsが依存している） -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Turn.js（CDNから読み込み） -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+
+<style>
+  body {
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  #flipbook {
+    width: 700px;
+    height: 450px;
+  }
+
+  #flipbook img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="flipbook">
+  <div><img src="pages1.png"></div>
+  <div><img src="pages2.png"></div>
+  <div><img src="pages3.png"></div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("#flipbook").turn({
+      width: 700,
+      height: 450,
+      autoCenter: true
+    });
+  });
+</script>
+
+</body>
+</html>
