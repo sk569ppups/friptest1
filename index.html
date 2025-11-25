@@ -2,33 +2,38 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flip Test</title>
 
-<!-- jQuery（Turn.jsが依存している） -->
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Turn.js（CDNから読み込み） -->
+<!-- Turn.js（正式動作品 → 0.11）-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/0.11/turn.min.js"></script>
-
 
 <style>
   body {
     background: #f0f0f0;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    height: 100vh;
   }
 
+  /* 📱 スマホ幅いっぱいに広がる本 */
   #flipbook {
-    width: 700px;
-    height: 450px;
+    width: 90vw;          /* 画面幅の90% */
+    height: 70vh;         /* 縦の70%（スマホで読みやすい） */
+    max-width: 800px;     /* PCでは最大800pxに制限 */
+    max-height: 600px;
   }
 
   #flipbook img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;   /* 画像が切れない */
   }
 </style>
 </head>
@@ -43,16 +48,21 @@
 
 <script>
   $(document).ready(function() {
-    $("#flipbook").turn({
-      width: 700,
-      height: 450,
+    const book = $("#flipbook");
+
+    book.turn({
+      width: book.width(),
+      height: book.height(),
+      display: "single",   // 📱 スマホは1ページ表示
       autoCenter: true
+    });
+
+    // 📱 画面向き変更やリサイズ時に自動調整
+    $(window).on("resize", function(){
+      book.turn("size", book.width(), book.height());
     });
   });
 </script>
 
 </body>
 </html>
-
-
-
